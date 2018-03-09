@@ -1,20 +1,25 @@
 {
   "apiVersion": "vlabs",
+  "location": "westus2",
+  "name": "test-cluster",
+  "tags": null,
   "properties": {
     "orchestratorProfile": {
-      "orchestratorType": "Kubernetes"
+      "orchestratorType": "Kubernetes",
+      "orchestratorRelease": "1.9"
     },
     "masterProfile": {
       "count": 1,
-      "dnsPrefix": "",
-      "vmSize": "Standard_D2_v2"
+      "dnsPrefix": "cbelu-test-cluster",
+      "vmSize": "Standard_D2s_v3"
     },
     "agentPoolProfiles": [
       {
         "name": "agentpool1",
-        "count": 3,
-        "vmSize": "Standard_D2_v2",
-        "availabilityProfile": "AvailabilitySet"
+        "count": 2,
+        "vmSize": "Standard_D2s_v3",
+        "availabilityProfile": "AvailabilitySet",
+        "osType": "Windows"
       }
     ],
     "linuxProfile": {
@@ -22,14 +27,18 @@
       "ssh": {
         "publicKeys": [
           {
-            "keyData": ""
+            "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDXCM2ezGOqN7rNu3UrG+mPxSR0DIomJHWFgiiVH9t0VAmFFqsF//7k3VhYe9diTzbuu7o3FsqdlzpgZQmmNTX6zvvQcWnoKcTnUGkJ2eL+8zAbBTRyuyQH09Ko87EYt9QTHlqvpceyGVCuVy/U3iFbeGyOanqAdQTOC+GwKghZe62ofI8vgfHOrx8QPdyIYqZ3rmgis9qk4P0dSzJvuvRYz/LFDAf5xi2FmF/K6HFVf5sDj+3UdoeaNvh2JecjDGWAEsH7sjqy2FXlTu6LFSVLkbFRml6LQShqsK8YY1FU5Risyna6YrOmDtPV+6l+k9ATp8EKfou9WBrnstoaH8Jd atuvenie@cloudbasesolutions.com"
           }
         ]
       }
     },
+    "windowsProfile": {
+          "adminUsername": "azureuser",
+          "adminPassword": "Passw0rdAdmin"
+    },
     "servicePrincipalProfile": {
-      "clientId": "",
-      "secret": ""
+      "clientId": "03fee577-e432-49a0-965b-69d12177e071",
+      "secret": "27d1af4f-4e04-4580-b122-9ac125adae3a"
     }
   }
 }
