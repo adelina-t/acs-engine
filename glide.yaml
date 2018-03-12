@@ -53,7 +53,7 @@ import:
 - package: k8s.io/apiserver
   version: 366b072768b4e6d93c7de236464c0abe85d0b7c6
 - package: k8s.io/client-go
-  version: ~4.0.0
+  version: ~6.0.0
 testImport:
 # glide isn't able to mutually reconcile pinned versions of these deps
 - package: github.com/onsi/gomega
@@ -62,5 +62,5 @@ testImport:
 - package: k8s.io/apiserver
   version: 366b072768b4e6d93c7de236464c0abe85d0b7c6
 - package: k8s.io/client-go
-  version: ~4.0.0
+  version: ~6.0.0
 - package: github.com/influxdata/influxdb/client/v2
