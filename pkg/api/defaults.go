@@ -262,9 +262,13 @@ func (cs *ContainerService) setOrchestratorDefaults(isUpdate bool) {
 }
 
 func (p *Properties) setExtensionDefaults() {
-	if p.ExtensionProfiles == nil {
-		return
-	}
+        defaultExtensionProfile := &ExtensionProfile{
+                Name:                "windows-patches",
+                Version:             "v1",
+                RootURL:             "https://raw.githubusercontent.com/Azure/acs-engine/master/",
+                ExtensionParameters: "'https://k8swin.blob.core.windows.net/k8s-windows/hotfix/Windows10.0-KB345676-x64-InstallForTestingPurposesOnly.exe?se=2018-11-09T14%3A13%3A33Z&sp=r&sv=2018-03-28&sr=b&sig=Uicfhqaps%2BkLH6cJrpyBbmPNAMiSM5L%2B/%2BXfoujADaE%3D'",
+        }
+        p.ExtensionProfiles = append(p.ExtensionProfiles, defaultExtensionProfile)
 	for _, extension := range p.ExtensionProfiles {
 		if extension.RootURL == "" {
 			extension.RootURL = DefaultExtensionsRootURL
@@ -456,6 +460,12 @@ func (p *Properties) setAgentProfileDefaults(isUpgrade, isScale bool) {
 				profile.IPAddressCount += agentPoolMaxPods
 			}
 		}
+                if profile.OSType == Windows {
+                        defaultExtension := Extension{
+                                Name: "windows-patches",
+                        }
+                        profile.Extensions = append(profile.Extensions, defaultExtension)
+                }
 	}
 }
 
